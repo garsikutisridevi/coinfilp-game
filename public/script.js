@@ -1,31 +1,24 @@
-const connectButton = document.getElementById('connect-wallet');
-const gameDiv = document.getElementById('game');
-const headsButton = document.getElementById('heads');
-const tailsButton = document.getElementById('tails');
-const resultDiv = document.getElementById('result');
+let headsCount = 0;
+let tailsCount = 0;
 
-connectButton.addEventListener('click', async () => {
-    // Placeholder for wallet connection logic
-    await connectWallet();
-    connectButton.style.display = 'none';
-    gameDiv.style.display = 'block';
-});
+function flipCoin() {
+    const resultElement = document.getElementById("result");
+    const headsCountElement = document.getElementById("headsCount");
+    const tailsCountElement = document.getElementById("tailsCount");
 
-headsButton.addEventListener('click', () => flipCoin('heads'));
-tailsButton.addEventListener('click', () => flipCoin('tails'));
+    resultElement.style.transform = "rotateY(360deg)"; // Add rotation animation
+    setTimeout(() => {
+        const outcome = Math.random() < 0.5 ? "HEADS" : "TAILS";
+        resultElement.innerText = outcome;
+        resultElement.style.transform = "rotateY(0deg)";
 
-async function flipCoin(selectedSide) {
-    const betAmount = document.getElementById('bet-amount').value;
-    const flipResult = await executeFlip(betAmount, selectedSide);
-    resultDiv.innerText = flipResult ? "You win!" : "You lose!";
-}
-
-async function connectWallet() {
-    // Wallet connection logic goes here (e.g., Solana wallet adapter)
-}
-
-async function executeFlip(betAmount, selectedSide) {
-    // Coin flip logic with blockchain interaction
-    // Example logic: randomly return true or false
-    return Math.random() < 0.5 ? selectedSide === 'heads' : selectedSide === 'tails';
+        // Update the counters
+        if (outcome === "HEADS") {
+            headsCount++;
+            headsCountElement.innerText = headsCount;
+        } else {
+            tailsCount++;
+            tailsCountElement.innerText = tailsCount;
+        }
+    }, 500); // Adjust the timing to match the CSS animation
 }

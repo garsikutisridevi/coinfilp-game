@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coinflip Game</title>
+    <title>Coin Flip Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
-        <h1>Coinflip Game</h1>
-        <button id="connect-wallet">Connect Wallet</button>
-        <div id="game" style="display:none;">
-            <p>Select your bet:</p>
-            <input type="number" id="bet-amount" placeholder="Amount to bet" />
-            <button id="heads">Heads</button>
-            <button id="tails">Tails</button>
-            <p id="result"></p>
+    <div class="container">
+        <h1>Heads or Tails</h1>
+        <p>Flip a virtual coin</p>
+        <div class="result" id="result">HEADS</div>
+        <button id="flipButton" onclick="flipCoin()">Flip the coin!</button>
+        <div class="counter">
+            <p>Heads: <span id="headsCount">0</span></p>
+            <p>Tails: <span id="tailsCount">0</span></p>
         </div>
+        <p>(Touch screen or press space bar)</p>
     </div>
     <script src="script.js"></script>
 </body>
